@@ -157,7 +157,10 @@ async def init_openai_client():
             raise ValueError("AZURE_OPENAI_MODEL is required")
 
         # Default Headers
-        default_headers = {"x-ms-useragent": USER_AGENT}
+        default_headers = {
+            "x-ms-useragent": USER_AGENT,
+            "Ocp-Apim-Subscription-Key": aoai_api_key  # Add the subscription key here
+        }
 
         azure_openai_client = AsyncAzureOpenAI(
             api_version=app_settings.azure_openai.preview_api_version,
